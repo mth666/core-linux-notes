@@ -1,15 +1,14 @@
 Linux Notes to By Heart :)
-making users and adding to sudo list (sudoer list). 
 
+# making users and adding to sudo list (sudoer list). 
 -------------------------------------------------------------------
-Debian 
+in Debian 
 usermod -aG sudo username
 
-RHEL/Rocky
+in Red hat world
 usermod -aG wheel username
 
-in Red Hat world, sudo group is called wheel. 
-
+*** in Red Hat world, sudo group is called wheel. 
 -------------------------------------------------------------------
 
 # Networking commands 
