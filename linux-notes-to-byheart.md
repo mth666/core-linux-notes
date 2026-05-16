@@ -68,15 +68,20 @@ the # that means root. $ means regular user.
 # essential core commands to master and fluent
 ----------
 tail		
-example : tail -f /var/log/syslog
+example : 
+```bash 
+tail -f /var/log/syslog 
+```
 use case : shows you the last few lines of a file. However, its most important feature is the -f flag (which stands for "follow").Real-world use: You are trying to figure out why a website is not loading. You open the "error log" with tail -f. Every time a new error happens, it pops up on your screen in real time.
 -------------------------------------------------------------------
 grep 		Search for text
 By default, grep is very strict. If you search for "apple," it will not find "Apple."
 
 The "Ignore Case" Flag (-i)
-By default, grep is very strict. If you search for "apple," it will not find "Apple."
-example Command: grep -i "apple" fruitlist.txt
+example Command: 
+```bash
+grep -i "apple" fruitlist.txt
+```
 Result: It finds apple, Apple, APPLE, and aPpLe.
 
 
@@ -87,32 +92,47 @@ Result: It shows you the line of text and the line number (e.g., Line 42: error 
 
 -r The "Recursive" Flag (-r)
 This is for when you don't know which file contains the word. It searches every file in a folder and every sub-folder.
-Command: grep -r "Gemini" /home/morty/projects/
-
+Command: 
+```bash
+grep -r "Gemini" /home/morty/projects/
+```
 -v The "Invert" Flag (-v)
 This is the "Everything But" flag. It shows you every line that does not contain the word.
-Command: grep -v "success" results.txt
+Command: 
+```bash
+grep -v "success" results.txt
+```
 
+```bash
 -c The "Count" Flag (-c)
+```
 Sometimes you don't want to see the text; you just want to know how many times a word appears.
-Command: grep -c "failed" login_attempts.log
-Result: It gives you a simple number, like 15.
+Command: 
+```bash
+grep -c "failed" login_attempts.log
+```
+Result: It gives a simple number, likes 15.
 
 -w Whole Words (-w)
 If you search for grep "art", it will find "art," but also "party," "smart," and "chart."
 If you only want the specific word "art," use the -w flag:
+```bash
 grep -w "art" filename.txt
-
+```
 Practice Examples 
+```bash
 grep "username" /etc/passwd
+```
 (This searches the system file that keeps track of users).
 
 Find how many "nologin" users exist:
+```bash
 grep -c "nologin" /etc/passwd
-
+```
 Search for a word regardless of capital letters in the software list:
+```bash
 grep -i "network" /etc/services
-
+```
 -------------------------------------------------------------------
 # find (The Partner to Grep)
 --------
@@ -161,7 +181,10 @@ tail -f → last 10 lines, then follows live
 --------
 cat prints the whole file to your screen. But when a file is 10,000 lines long, cat is messy. That is when you use less.
 Real-world use: Reading a manual or a long script without cluttering your screen.
-Simple example: less huge_file.txt
+Simple example: 
+```bash
+less huge_file.txt
+```
 Why it is essential: less allows you to scroll up and down and search for words (using the / key) inside the viewer. It is much cleaner than cat.
 
 less		Read a file slowly
@@ -176,8 +199,10 @@ Why it is essential: You will use these constantly to prevent your system from c
 
 df (Disk Free): Think "Big Picture." It tells you if the whole "fridge" is full.
 du (Disk Usage): Think "Specifics." It tells you which "tupperware" inside the fridge is taking up the most space.
-
-df -h		Check disk health
+```bash
+df -h		
+```
+Check disk health
 
 -------------------------------------------------------------------
 # Process Management
@@ -195,24 +220,25 @@ a = show processes for all users.
 u = display the user/owner of the process.
 x = show processes not attached to a terminal (background tasks).
 Real World Move: Use this with grep to find a specific app.
-
+```bash
 ps aux | grep nginx
-This tells you: Is the web server actually running? Who started it? When did it start?
+```
+This tells: Is the web server actually running? Who started it? When did it start?
 
-## kill -9 (The "I'm Not Asking" Command)
+## kill -9 (The "Im Not Asking" Command)
 When a program refuses to close, you have to "terminate with extreme prejudice."
 The Workflow: Find the PID (Process ID number) using ps or htop, then run:
 sudo kill -9 1234 (Replace 1234 with the actual PID).
-Senior Advice: Never use -9 first. Try just kill [PID] (which is a polite "Please close") before you use -9 (which is "Die immediately").
+Advice: Never use -9 first. Try just kill [PID] (which is a polite "Please close") before using -9 (which is "Die Immediately!").
 
 Tips 
 *** Read the Logs First: Before change a single setting or restart a service, use tail -f or grep skills on the logs in /var/log/. 
 The server will almost always tell you exactly why it's unhappy if you listen to it.
 
 *** Config Files: Copy Before You Edit: Before you touch a config file (like /etc/ssh/sshd_config), make a backup.
-
+```bash
 sudo cp config_file config_file.bak
-
+```
 *** If you mess up the syntax and the server won't start, you just copy the .bak back and you're saved.
 
 *** The "Tab" Key is Your Best Friend: Never type out a full file path like /etc/systemd/system/. Type /et[TAB]/sys[TAB]. If the terminal doesn't auto-complete, it means you made a typo or the file doesn't exist. It's a built-in "Check Engine" light.
@@ -296,7 +322,9 @@ Z = everyone else on the system
 # how many groups are there?
 Every file has exactly one group assigned to it. Not multiple. Just one.
 To see who owns a file and which group it belongs to:
+```bash
 ls -l /etc/nginx/nginx.conf
+```
 Output looks like:
 -rw-r--r-- 1 root root 1234 May 12 09:00 nginx.conf
 That's:
@@ -321,9 +349,10 @@ You can own a file but still not be able to write to it if permissions are wrong
 
 do I need to be root first?
 You don't need to literally log in as root. That's actually considered bad practice on modern Linux. Instead you stay as your normal user and use sudo in front of commands that need root power.
+```bash
 sudo chown root:root /etc/nginx/nginx.conf
 sudo chmod 644 /etc/nginx/nginx.conf
-
+```
 sudo = "do this one command as root." Then you're back to being a normal user again.
 Think of it like a key card at work. You're still you, but the key card gives you access to the server room for that one moment. You don't become the building manager permanently.
 That's why your notes say the # prompt means root and $ means regular user. If you're logged in as full root all the time, one typo can destroy everything. sudo keeps you safe.
@@ -353,26 +382,33 @@ Use letters when you want to modify just one specific permission without alterin
 # Package Management (The "App Store" of Linux)
 --------
 to be fluent, need to learn both in dnf (the tool for RHEL/Rocky) alongside apt (for Debian).
-Task			Debian (apt)			RHEL/Rocky (dnf)
-Update lists		udo apt update			sudo dnf check-update
-Install app		sudo apt install htop		sudo dnf install htop
-Remove app		sudo apt remove htop		sudo dnf remove htop
-Search for app		apt search nginx		dnf search nginx
+# apt vs dnf  Common Tasks
+
+| Task                | Debian (`apt`)                  | RHEL/Rocky (`dnf`)          |
+|---------------------|---------------------------------|-----------------------------|
+| Update lists        | `sudo apt update`               | `sudo dnf check-update`     |
+| Install app         | `sudo apt install htop`         | `sudo dnf install htop`     |
+| Remove app          | `sudo apt remove htop`          | `sudo dnf remove htop`      |
+| Search for app      | `apt search nginx`              | `dnf search nginx`          |
 -------------------------------------------------------------------
 truncate -s 0
 turncate = resize 
 -s means size
 0 means Zero bytes. 
 -------------------------------------------------------------------
-Pipe | vs && and &
+# Pipe | vs && and &
 --------
-|  takes the output of the first command and feeds it as input to the second command. They're connected, talking to each other.
+Pipe |  takes the output of the first command and feeds it as input to the second command. They're connected, talking to each other.
+```bash
 ps aux | grep nginx
-"Give me all processes, then filter that list for nginx"
+```
+this comamnds means "Give me all processes, then filter that list for nginx"
 
 &&  runs the second command only if the first one succeeded. They're independent, just chained together conditionally.
+```bash
 systemctl stop apache2 && systemctl start nginx
-"Stop apache, and ONLY if that worked, start nginx"
+```
+this command means "Stop apache and ONLY if that worked, start nginx"
 
 easier to remember with this analogy
 | = a conversation between commands. Output of one becomes input of next.
@@ -406,31 +442,35 @@ The good news is that the commands for managing SSH keys are identical on both D
 
 ## Generating the Key (The "Stamp")
 To create a new pair of keys (a public one and a private one), use the ssh-keygen command. highly recommended to use the modern ED25519 algorithm for better security and performance:
+```bash
 ssh-keygen -t ed25519
-
+```
 What happens: The system will ask where to save the key (default is usually /home/user/.ssh/id_ed25519).
 Passphrase: It will ask for a passphrase. This is an optional "password for your key" for extra safety. If you want a "silent" login, just press Enter twice to leave it empty.
 
 ## Copying the Key to the Server (The "Lock")
 Since you are on a Debian host wanting to access a RHEL VM, you can "ship" your public key to the remote machine using:
+```bash
 ssh-copy-id batman@<RHEL_VM_IP>
-
+```
 How it works: This command logs into the RHEL VM once using your password, places your public key in the ~/.ssh/authorized_keys file, and then logs out. From then on, you won't need a password to log in.
 
 Tips:
 Safety First: the importance of backing up configuration files is essential
-Before  start making major changes to how SSH works on the server side, remember to run: sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
-
+Before  start making major changes to how SSH works on the server side, remember to run: 
+```bash
+sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
+```
 Package Management: If the SSH tools are missing on a fresh install, remember the distribution's high-level tools: use apt for Debian and dnf for RHEL
-
-The "Check Engine" Light: When typing out the paths to  keys in the .ssh folder, remember to use the Tab key to ensure not making a typo
 
 -------------------------------------------------------------------
 # making many SSH keys
 --------
 To create five distinct keys for  different VMs, use the -f flag to give each one a unique name. For example:
+```bash
 ssh-keygen -t ed25519 -f ~/.ssh/id_debian
 ssh-keygen -t ed25519 -f ~/.ssh/id_rhel
+```
 ...and so on.
 
 ## Key Considerations:
@@ -439,15 +479,26 @@ The "Check Engine" Light: When managing these multiple files in .ssh directory, 
 If it doesn't auto-complete, likely made a typo or the file wasn't created
 
 Backups are Crucial: 
-Before  start generating a bunch of new keys and potentially overwriting existing ones, it's a good idea to back up current .ssh folder: cp -r ~/.ssh ~/.ssh_backup
+Before  start generating a bunch of new keys and potentially overwriting existing ones, it's a good idea to back up current .ssh folder: 
+```bash
+cp -r ~/.ssh ~/.ssh_backup
+```
 
-Managing the Connection: If you use different keys, you will have to tell SSH which key to use for which VM. You can do this with the -i flag: ssh -i ~/.ssh/id_rhel batman@<RHEL_IP>
-
+Managing the Connection: If you use different keys, you will have to tell SSH which key to use for which VM. You can do this with the -i flag: 
+```bash
+ssh -i ~/.ssh/id_rhel batman@<RHEL_IP>
+```
 In the Linux world, your private key is essentially your digital "identity" or passport. Just as you don't need five different passports to visit five different countries, you don't necessarily need five different keys for five different OSs. Instead, you keep your single private key secure on your host machine (your Debian 13) and simply place the corresponding public key on every VM you want to access.
 
 shipping ssh keys to remote servers
-example : ssh-copy-id username@<RHEL_VM_IP>
-example 2 : ssh-copy-id -i ~/.ssh/id_ed25519.pub username@<RHEL_VM_IP>
+example : 
+```bash
+ssh-copy-id username@<RHEL_VM_IP>
+```
+example 2 : 
+```bash
+ssh-copy-id -i ~/.ssh/id_ed25519.pub username@<RHEL_VM_IP>
+```
 -i flag: This specifies the exact path to the public key to copy.
 flow : It will log into the RHEL VM once using password, automatically create the ~/.ssh directory if it doesn't exist, and append the public key to the authorized_keys file.
 
@@ -495,9 +546,107 @@ Check the Port: Just as you use ss -tunlp (the "Tunnel-P" trick) to see if a Lin
 
 Backups Still Apply: Even on Windows: editing the Windows SSH configuration file (sshd_config), copy it before you edit it
 -------------------------------------------------------------------
-# check current RAM slots and speed
-sudo dmidecode -t memory
+# More about SSH and workflow
+SSH login works in two phases:
+Password auth : the "get your foot in the door" method
+Key-based auth : the professional, secures way to actually use
 
+## Basic Password Login
+```bash
+ssh username@ipAddress
+```
+Note : It'll prompt for the remote user's password. 
+Works the same whether it's Debian or RHEL. 
+SSH command doesn't care about the distro
+
+## Specify a port (if the admin moved SSH off the default port 22):
+```bash
+ssh -p 2222 username@ipAddress
+```
+
+ ## Key-Based Auth (The Right Way)
+ ### Generate your key (on your HOST machine)
+ ```bash
+ ssh-keygen -t ed25519 -C "tony-homelab"
+```
+Notes: 
+-t ed25519 > use this algorithum. Modern, fast, and secure. Avoid RSA unless forced to.
+-C > a comment/label to remember what the key is for
+Hit Enter to accept the default path usually it's under this path(~/.ssh/id_ed25519) unless makes multiple keys
+ ### Ship the public key to the remote VM
+```bash
+ssh-copy-id username@ipAddress
+```
+If you have multiple keys and need to specify which one:
+```bash
+ssh-copy-id -i ~/.ssh/id_debian.pub username@ipAddress
+```
+### Log in with no password
+```bash
+ssh username@ipAddress
+```
+### The SSH Config File - Recommended mode
+``` bash
+Host debian-vm
+    HostName 192.168.1.50
+    User tony
+    IdentityFile ~/.ssh/id_debian
+
+Host rhel-vm
+    HostName 192.168.1.51
+    User tony
+    IdentityFile ~/.ssh/id_rhel
+```
+this intended for 
+instead of typing 
+```bash
+ssh -i ~/.ssh/id_rhel tony@192.168.1.51
+```
+jus need to type 
+```bash
+ssh rhel-vm
+```
+### Verifying SSH is Running (Server Side)
+# RHEL
+```bash
+systemctl status sshd
+```
+# Debian
+```bash
+systemctl status ssh
+```
+# Is it actually listening on port 22?
+```bash
+ss -tunlp | grep 22
+```
+### The permission problem, Common problem
+```bash
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/authorized_keys
+chmod 600 ~/.ssh/id_ed25519        # private key
+chmod 644 ~/.ssh/id_ed25519.pub    # public key
+```
+On RHEL specifically, you may also hit SELinux blocking SSH if the .ssh dir was created in a incorect way. it can be fix with:
+```bash
+restorecon -Rv ~/.ssh
+```
+# Some differences in Debian and RH world 
+# Debian vs RHEL — SSH Differences
+
+| Thing | Debian | RHEL / Rocky / AlmaLinux |
+|---|---|---|
+| Default user (cloud/VM installs) | `debian` or  custom user | `ec2-user`, `rocky`, `alma`, or custom |
+| SSH service name | `ssh` | `sshd` |
+| Start/check SSH | `systemctl status ssh` | `systemctl status sshd` |
+| Firewall | `ufw` (if installeds) | `firewalld` |
+| allow SSH through firewall | `ufw allow ssh` | `firewall-cmd --add-service=ssh --permanent` then `firewall-cmd --reload` |
+
+
+---------------------------------------------------------------
+# check current RAM slots and speed
+```bash
+sudo dmidecode -t memory
+```
 This retrive:
 How many RAM slots 
 How many are occupied
