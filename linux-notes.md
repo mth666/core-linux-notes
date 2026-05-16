@@ -811,7 +811,9 @@ Thus, it is more likely to be used to compress larger files.
 | `bzip2 *`        | Compresses all files in the current directory and replaces each file with a file renamed with a `.bz2` extension.                                         |
 | `bunzip2 *.bz2`  | Decompresses all files with an extension of `.bz2` in the current directory. Under the hood, `bunzip2` is the same as calling `bzip2 -d`.                 |
 
-NOTE: bzip2 has lately become deprecated due to lack of maintenance and the superior compression ratios of xz which is actively maintained. While it should no longer be used for compressing files, you are likely to still need it to decompress files you encounter with the bz2 extension.
+NOTE: bzip2 has lately become deprecated due to lack of maintenance and the superior compression ratios of xz which is actively maintained. 
+
+While it should no longer be used for compressing files, you are likely to still need it to decompress files you encounter with the bz2 extension.
 ---------------------------------------------------------
 # Linux Directory 
 / The root directory, where everything begins. 
@@ -880,7 +882,7 @@ These are important and should be monitored from time to time.
 The most useful ones are /var/log/messages and /var/log/syslog. 
 Note that for security reasons on some systems, you must be the superuser to view log files.
 
-
+<!--  -->
 
 
 

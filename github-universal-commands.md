@@ -111,3 +111,28 @@ git push -u origin main
 git add .
 git commit -m "describe what added"
 git push
+
+### example work flows (make directories first or folders in windows world)
+
+mkdir -p ~/Documents/ideas/funeral-business
+mkdir -p ~/Documents/ideas/camping-hiking
+mkdir -p ~/Documents/ideas/smart-home
+
+then create files (either with touch or nano)
+nano/touch ~/Documents/ideas/funeral-business/README.md
+nano/touch ~/Documents/ideas/camping-hiking/README.md
+nano/touch ~/Documents/ideas/smart-home/README.md
+
+##### note
+touch make empty file. nano make file and you can instantly add contents in it in terminal. :)
+
+cd ~/Documents/ideas
+git init
+git add .
+git commit -m "initial ideas dump — funeral, camping, smart home"
+
+#### then connect to github repo
+git remote add origin https://github.com/username/repoName.git
+git branch -M main
+git push -u origin main
+##### Note, create github repo first before connecting obviously xD
