@@ -829,3 +829,32 @@ Example:
 whereis nginx
 
 ------------------------------------
+
+virtual machine trouble shooting. 
+"Error starting domain: Requested operation is not valid: network 'default' is not active"
+# 1. Start the default network
+sudo virsh net-start default
+
+# 2. Configure it to start automatically every time the PC boots
+sudo virsh net-autostart default
+# double-check that everything is configured correctly
+```bash
+sudo virsh net-list --all
+```
+
+If it complains about firewall/iptables or dnsmasq:
+Libvirt needs dnsmasq for DHCP and an iptables backend to route traffic. Can fix this by installing the missing pieces based on the Linux distribution:
+
+```bash
+Ubuntu/Debian: sudo apt install dnsmasq iptables
+Arch Linux: sudo pacman -S dnsmasq iptables-nft
+Fedora/RHEL: sudo dnf install dnsmasq iptables-nft
+```
+#   Note: 
+After installing, restart the service with sudo systemctl restart libvirtd and try the quick fix commands again.
+
+If it says "network 'default' does not exist":
+If the configuration file vanished entirely, it can be restore the factory default network profile with this command:
+```bash
+sudo virsh net-define /etc/libvirt/qemu/networks/default.xml
+```
