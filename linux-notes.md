@@ -882,6 +882,33 @@ These are important and should be monitored from time to time.
 The most useful ones are /var/log/messages and /var/log/syslog. 
 Note that for security reasons on some systems, you must be the superuser to view log files.
 
+----------------------------
+# Web Server and Firewall stuffs
+```bash
+sudo dnf/apt install nginx
+systemctl start nginx
+systemctl enable nginx
+systemctl status nginx
+```
+notes: enable command is for boot. 
+curl command is like a browser but in the terminal. it fetches a webpage and dumps the HTML to the screen.
+## Check what firewalld is currently allowing
+```bash
+sudo firewall-cmd --list-all
+```
+### ports that need to open for web stuffs
+Port 80 = http, regular web traffic
+Port 443 = https, encrypted web traffics
+
+note : on firewalld you don't open ports by number directly,  you open them by service names. more cleaner this ways. 
+
+```bash
+sudo firewall-cmd --permanent --add-service=http
+sudo firewall-cmd --permanent --add-service=https
+sudo firewall-cmd --reload
+```
+--permanent flag means it survives a reboot. without this the rule disappears next boot/restart.
+--reload applies the new rules without dropping existing connections.
 <!--  -->
 
 
