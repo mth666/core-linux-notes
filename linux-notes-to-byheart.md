@@ -682,11 +682,23 @@ sudo firewall-cmd --reload
 --permanent flag means it survives a reboot. without this the rule disappears next boot/restart.
 --reload applies the new rules without dropping existing connections.
 
-
-
-
-
-
+verifying firewall rules saved correctly
+```bash
+sudo firewall-cmd --list-all
+```
+On RHEL nginx serves files from
+```bash
+/usr/share/nginx/html/
+```
+-> means symlink 
+real nginx files live at 
+```bash
+/usr/share/testpage/index.html
+```
+The config that controls where nginx looks for files lives here >
+```bash
+/etc/nginx/nginx.conf
+```
 
 
 

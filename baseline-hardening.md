@@ -299,9 +299,10 @@ checked SSH is properly configureds:
 ```bash
 sudo sshd -t
 ```
-
-last command tests the sshd_config for syntax errors without restarting anything. clean output means no errors.
-
+Note : he -t flag stands for Test Mode. last command tests the sshd_config for syntax errors without restarting anything. clean output means no errors. to use with nginx, it'll beocme like
+```bash
+sudo nginx -t
+```
 ---
 
 ## Quick reference checklist
