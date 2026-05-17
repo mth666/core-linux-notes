@@ -72,9 +72,12 @@ example :
 ```bash 
 tail -f /var/log/syslog 
 ```
-use case : shows you the last few lines of a file. However, its most important feature is the -f flag (which stands for "follow").Real-world use: You are trying to figure out why a website is not loading. You open the "error log" with tail -f. Every time a new error happens, it pops up on your screen in real time.
+use case : shows you the last few lines of a file. However, its most important feature is the -f flag (which stands for "follow").
+Real-world use: You are trying to figure out why a website is not loading. open the "error logs" with tail -f. 
+
+Every time a new error happens, it pops up on the screen in real time.
 -------------------------------------------------------------------
-grep 		Search for text
+## grep 		Search for text
 By default, grep is very strict. If you search for "apple," it will not find "Apple."
 
 The "Ignore Case" Flag (-i)
@@ -170,12 +173,14 @@ tail shows you the last few lines of a file. However, its most important feature
 Real-world use case: You are trying to figure out why a website is not loading. You open the "error log" with tail -f. Every time a new error happens, it pops up on your screen in real time.
 Simple example: tail -f /var/log/syslog
 Why it is essential: It is how engineers watch a system "breathe" and catch errors the moment they happen.
-
+### example tail commands
+```
 tail -f 	Watch a file grow
-tail by itself doesn't show all lines. It shows the last 10 lines by default. That's it. 10 is the default number baked into the command.
-tail → last 10 lines, static
-tail -n 50 → last 50 lines, static
-tail -f → last 10 lines, then follows live
+tail by itself doesnt show all lines. It shows the last 10 lines by default. Thats it. 10 is the default number baked into the command.
+tail > last 10 lines, static
+tail -n 50 > last 50 lines, static
+tail -f >  last 10 lines, then follows live
+```
 -------------------------------------------------------------------
 # cat and less (The Viewers)
 --------
