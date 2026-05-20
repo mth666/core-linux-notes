@@ -139,34 +139,45 @@ grep -i "network" /etc/services
 -------------------------------------------------------------------
 # find (The Partner to Grep)
 --------
-While grep searches for text inside a file, find searches for the file itself.
-Real-world use: You know there is a configuration file somewhere in the /etc folder, but you cannot remember the exact name or where it is.
-To find everything ending in .ssh: sudo find / -name "*.ssh"
-The Breakdown:
-/: Tells the command to start at the very beginning of the filesystem (the "trunk" of the tree)
+while grep searches for text inside a file, find searches for the file itself.
+real world use case: you know there is a configuration file somewhere in the /etc folder, but you cannot remember the exact name or where it is.
+to find everything ending in .ssh: 
 
--name: Tells it you are searching for a specific pattern
+```
+sudo find / -name "*.ssh"
+```
 
-*: This is a wildcard that matches any string of characters, just like in Windows
-sudo: Essential when searching the whole drive, as it gives you the "key card" to look into protected system folders
+mechanics:
+/: tells the command to start at the very beginning of the filesystem (the "trunk" of the tree or / )
 
+-name: tells that we are searching for a specific pattern
 
-Simple example: find /etc -name "*.conf"
+*: this is a wildcard that matches any string of characters, just like in windows
+
+sudo: essential when searching the whole drive, as it gives the permissions to look into protected system folders
+
+```bash
+example 1 : find /etc -name "*.conf"
 example 2 : find /home/$USER/.ssh -name "id_*"
 example 3 : sudo find / -name "*.ssh"
-How it works: It searches specifically in your user's hidden .ssh folder for any file starting with "id_"	
+```
+how its works: this searches specifically in the users hidden .ssh folder for any file starting with "id_"	
 
-Why essential: It helps locate the "missing needle in the haystack" across entire hard drive.
+note: this helps locate the file across entire hard drive.
 
-Using the locate Command (The "Speedy" Tool)
+using the locate command (fast way)
 locate is much faster than find because it uses a pre-built database
 
 command: locate id_ed25519 (or locate id_rsa)
 Tips: If you just created the keys, locate might not see them yet because the database usually updates only once a day
-To fix this, run sudo updatedb first to refresh the system's memory
+To solve this, need to 
+```
+run sudo updatedb 
+```
+to refresh the system memory
 
 -------------------------------------------------------------------
-# tail (The Live Monitor)
+# tail (the live monitor)
 --------
 
 tail shows you the last few lines of a file. However, its most important feature is the -f flag (which stands for "follow").
@@ -197,17 +208,22 @@ less		Read a file slowly
 -------------------------------------------------------------------
 # df and du (The Space Managers)
 --------
-In the real world, servers often "break" because the hard drive is 100% full. These two commands tell you where the space went.
-df -h (Disk Free): Shows you how much total space is left on your "disks."
+In the real world, servers often "break" because the hard drive is 100% full. These two commands  where the space went.
+df -h (Disk Free): Shows how much total space is left on the disks.
 du -sh (Disk Usage): Shows you how much space a specific folder is taking up.
-Why it is essential: You will use these constantly to prevent your system from crashing due to a full drive.
+note:  use these constantly to prevent the system from crashing due to a full hdd/ssd drive.
 
-df (Disk Free): Think "Big Picture." It tells you if the whole "fridge" is full.
-du (Disk Usage): Think "Specifics." It tells you which "tupperware" inside the fridge is taking up the most space.
+df (Disk Free use case): Overview, It tells if the whole disk is full.
+du (Disk Usage use case): Specifics, It tells which directory/files inside the disk is taking up the most space.
 ```bash
 df -h		
 ```
-Check disk health
+-h for human friendly readable
+```
+du -sh /var/*
+```
+-s for summary
+-h for human friendly readable
 
 -------------------------------------------------------------------
 # Process Management
@@ -218,27 +234,36 @@ to find the program that is eating 100% of your CPU use : top, htop, or ps comma
 Most modern distros don't come with htop by default, but it’s the first thing every engineer installs. It’s a color-coded, live-updating view of your CPU, RAM, and every running process.
 Pro-Tip: If a process is frozen, you don't need to type a command to kill it. In htop, just use your arrow keys to highlight the "jerk" process and press F9 to kill it.
 
-## ps aux (The "Snapshot")
+## ps aux (the "snapshot")
 Sometimes you don't want a live view; you just want a list of everything running right now so you can grep it.
 The Breakdown:
 a = show processes for all users.
 u = display the user/owner of the process.
 x = show processes not attached to a terminal (background tasks).
-Real World Move: Use this with grep to find a specific app.
+Real World use case: combined this with grep to find a specific app.
 ```bash
 ps aux | grep nginx
 ```
-This tells: Is the web server actually running? Who started it? When did it start?
+this tell: ss the web server actually running? who started it? when did it start?
 
-## kill -9 (The "Im Not Asking" Command)
-When a program refuses to close, you have to "terminate with extreme prejudice."
-The Workflow: Find the PID (Process ID number) using ps or htop, then run:
+## kill -9 (the "Im Not Asking" command)
+When a program refuses to clos and need to terminate.
+the workflow: find the PID (Process ID number) using ps or htop, then run:
+```
 sudo kill -9 1234 (Replace 1234 with the actual PID).
-Advice: Never use -9 first. Try just kill [PID] (which is a polite "Please close") before using -9 (which is "Die Immediately!").
+```
+note: never use -9 first. try just 
+```
+kill [PID] 
+```
+(which is a polite) before using -9 (which is "Die Immediately")
 
 Tips 
-*** Read the Logs First: Before change a single setting or restart a service, use tail -f or grep skills on the logs in /var/log/. 
-The server will almost always tell you exactly why it's unhappy if you listen to it.
+*** read the logs first: Before change a single setting or restart a service, use 
+```
+tail -f or grep skills on the logs in /var/log/. 
+```
+The server will almost always tell exactly why itss unhappy if you listen to it.
 
 *** Config Files: Copy Before You Edit: Before you touch a config file (like /etc/ssh/sshd_config), make a backup.
 ```bash
@@ -704,8 +729,22 @@ The config that controls where nginx looks for files lives here >
 ```bash
 /etc/nginx/nginx.conf
 ```
+---------------
+## Logs in Debian and RH 
+```
+/var/log/audit
+```
+note : audit logs are security related
 
+### for general system activities on Debian is
+```
+Debian = /var/log/syslog
+```
 
+for general system activity on RHEL is
+```
+RHEL   = /var/log/messages
+```
 
 
 
