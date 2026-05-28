@@ -139,7 +139,7 @@ grep -i "network" /etc/services
 -------------------------------------------------------------------
 # find (The Partner to Grep)
 --------
-while grep searches for text inside a file, find searches for the file itself.
+grep command searches for text inside a file, find searches for the file itself.
 real world use case: you know there is a configuration file somewhere in the /etc folder, but you cannot remember the exact name or where it is.
 to find everything ending in .ssh: 
 
@@ -149,7 +149,6 @@ sudo find / -name "*.ssh"
 
 mechanics:
 /: tells the command to start at the very beginning of the filesystem (the "trunk" of the tree or / )
-
 -name: tells that we are searching for a specific pattern
 
 *: this is a wildcard that matches any string of characters, just like in windows
@@ -165,7 +164,21 @@ how its works: this searches specifically in the users hidden .ssh folder for an
 
 note: this helps locate the file across entire hard drive.
 
-using the locate command (fast way)
+### example commands
+```
+find . -name "file.txt"     #find by name 
+find /home -iname "Document.pdf"    #case insensitive search 
+find /var -type d -name "config"    #find only directories
+find / -size +100M (over 100MB)     #find large files
+find ~ -mtime -7    #find recently modified (last 7 days in this)
+find . -perm 644    #find by permission
+find . -empty   #find empty files/items
+```
+find command can also perform actions on every file it identifies
+find /tmp -name "*.tmp" -delet  #delete files
+find . -name "*.txt" -exec chmod 644 {} \;  #execute a command (the {} is a placeholder for each files found)
+find . -type f -exec grep -l "search_term" {} \;    #find file content: combined with grep to find text inside files
+### using the locate command (quick way)
 locate is much faster than find because it uses a pre-built database
 
 command: locate id_ed25519 (or locate id_rsa)
