@@ -136,6 +136,13 @@ Search for a word regardless of capital letters in the software list:
 ```bash
 grep -i "network" /etc/services
 ```
+```bash
+sudo grep -i "failed" /var/log/messages | wc -l
+```
+wc means word count 
+-l means count lines
+command in plain english : search /var/log/messages for any line containing the word failed in any capitalisation, then count how many lines matched.
+
 -------------------------------------------------------------------
 # find (The Partner to Grep)
 --------
