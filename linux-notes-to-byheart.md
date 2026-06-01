@@ -72,36 +72,36 @@ example :
 ```bash 
 tail -f /var/log/syslog 
 ```
-use case : shows you the last few lines of a file. However, its most important feature is the -f flag (which stands for "follow").
-Real-world use: You are trying to figure out why a website is not loading. open the "error logs" with tail -f. 
+use case : shows the last few lines of a file. however, its most important feature is the -f flag (which stands for "follow").
+Real-world use:  when trying to figure out why a website is not loading. open the "error logs" with tail -f. 
 
-Every time a new error happens, it pops up on the screen in real time.
+every time a new error happens, it pops up on the screen in real time.
 -------------------------------------------------------------------
 ## grep 		Search for text
 By default, grep is very strict. If you search for "apple," it will not find "Apple."
 
-The "Ignore Case" Flag (-i)
+the "ignore case" Flag (-i)
 example Command: 
 ```bash
 grep -i "apple" fruitlist.txt
 ```
-Result: It finds apple, Apple, APPLE, and aPpLe.
+output : It finds apple, Apple, APPLE, and aPpLe.
 
 
-The "Line Number" Flag (-n)
-When you are looking at a long configuration file with 500 lines, you need to know where the word is.
+the "line number" Flag (-n)
+When looking at a long configuration file with 500 lines, and need to know where the word is. -n can use it. 
 Command: grep -n "error" system.log
-Result: It shows you the line of text and the line number (e.g., Line 42: error found).
+results: It shows the line of text and the line number (e.g., Line 42: error found).
 
 -r The "Recursive" Flag (-r)
-This is for when you don't know which file contains the word. It searches every file in a folder and every sub-folder.
-Command: 
+this is for searching everything when don't know which file contains the word. It searches every file in a folder and every sub-folders.
+command: 
 ```bash
 grep -r "Gemini" /home/morty/projects/
 ```
 -v The "Invert" Flag (-v)
-This is the "Everything But" flag. It shows you every line that does not contain the word.
-Command: 
+This is the "Everything But" flag. It shows every line that does not contain the word.
+command: 
 ```bash
 grep -v "success" results.txt
 ```
@@ -114,21 +114,21 @@ Command:
 ```bash
 grep -c "failed" login_attempts.log
 ```
-Result: It gives a simple number, likes 15.
+result: It gives a simple number, likes 15.
 
 -w Whole Words (-w)
 If you search for grep "art", it will find "art," but also "party," "smart," and "chart."
-If you only want the specific word "art," use the -w flag:
+If only want the specific word "art," use the -w flag:
 ```bash
 grep -w "art" filename.txt
 ```
-Practice Examples 
+practice examples 
 ```bash
 grep "username" /etc/passwd
 ```
 (This searches the system file that keeps track of users).
 
-Find how many "nologin" users exist:
+find how many "nologin" users exist:
 ```bash
 grep -c "nologin" /etc/passwd
 ```
@@ -140,7 +140,7 @@ grep -i "network" /etc/services
 # find (The Partner to Grep)
 --------
 grep command searches for text inside a file, find searches for the file itself.
-real world use case: you know there is a configuration file somewhere in the /etc folder, but you cannot remember the exact name or where it is.
+real world use case: when you know there is a configuration file somewhere in the /etc folder, but couldn't remember the exact name or where it is.
 to find everything ending in .ssh: 
 
 ```
