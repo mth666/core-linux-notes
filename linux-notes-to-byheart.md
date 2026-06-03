@@ -142,7 +142,15 @@ sudo grep -i "failed" /var/log/messages | wc -l
 wc means word count 
 -l means count lines
 command in plain english : search /var/log/messages for any line containing the word failed in any capitalisation, then count how many lines matched.
-
+### common grep flags summarized
+```bash
+grep "text" file          basic search
+grep -i "text" file       case insensitive
+grep -v "text" file       invert, exclude matches
+grep -c "text" file       count matching lines
+grep -n "text" file       show line numbers
+grep -r "text" /path      search recursively
+```
 -------------------------------------------------------------------
 # find (The Partner to Grep)
 --------
