@@ -1,138 +1,363 @@
-# Two ways to make Git hub repo - PCs
- A - Clone (GitHub first)
-Best when: repo already has files in it, or you are on a new machine
-How to: git clone URL, done, everything downloads ready to go
+# GitHub + Git Quick Reference
 
- B - Init (Local first)  
-Best when: you already have files on your machine you want to push up
-How to: git init, git remote add origin, git push -u origin main
+## 0. The Golden Rule
 
-# NAVIGATE AROUND
-cd ~/Documents/syseng-notes/
-# move into a folder, ~ means your home directory /home/username
+Before committing:
 
-cd ..
-# go back one folder up
+1. Save your files (`Ctrl + S`)
+2. Check what Git sees
 
-pwd
-# shows your current location, stands for print working directory
-
-ls
-# lists files and folders in current location
-
-ls -lah
-# lists everything including hidden files with sizes, more detailed
-
-# CREATE FOLDERS AND FILES
-mkdir foldername
-# creates a single folder
-
-mkdir -p ~/Documents/syseng-notes/troubleshootingnotes
-# creates folder and any missing parent folders along the way, -p means parents
-
-touch filename.md
-# creates a new empty file
-
-echo "# title here" >> README.md
-# writes a line of text into a file, creates the file if it doesn't exist
-
-# ONE TIME SETUP — per machine
-git config --global credential.helper store
-# saves your token permanently so you never get asked for password again
-
-git config --global user.name "username"
-# tells git who you are, shows up in commit history
-
-git config --global user.email "email@gmail.com"
-# ties your commits to your github account
-
-# ONE TIME SETUP - per new repo (if no README was checked on github)
-git init
-# turns current folder into a git repository
-
-git remote add origin https://github.com/username/repoName.git
-# connects your local folder to your github repo
-
-git branch -M main
-# renames default branch to main, github standard
-
-git push -u origin main
-# first push ever, sets upstream so future pushes just need git push
-
-# EVERY TIME YOU UPDATE - the three commands forever
-git add .
-# stages all changed and new files, dot means everything in current folder
-
-git commit -m "your message here"
-# saves a snapshot locally with a description of what you did
-
-git push
-# sends the committed changes up to github
-
-# BONUS COMMANDS - useful to know
+```bash
 git status
-# shows what files are changed, staged, or untracked
+```
 
-git log --oneline
-# shows your commit history in a clean single line format
+If Git doesn't see your changes, they cannot be committed.
 
-git pull
-# downloads latest changes from github, run this first when on another machine
+---
 
+# 1. Terminal Navigation
+
+```bash
+pwd
+```
+
+Shows current location.
+
+```bash
+ls
+```
+
+List files and folders.
+
+```bash
+ls -lah
+```
+
+Detailed list including hidden files.
+
+```bash
+cd foldername
+```
+
+Move into a folder.
+
+```bash
+cd ..
+```
+
+Go up one folder.
+
+```bash
+cd ~/Documents
+```
+
+Go to Documents folder.
+
+---
+
+# 2. Create Folders and Files
+
+Create a folder:
+
+```bash
+mkdir foldername
+```
+
+Create nested folders:
+
+```bash
+mkdir -p ~/Documents/projects/my-notes
+```
+
+`-p` means "create parent folders if needed."
+
+Create an empty file:
+
+```bash
+touch README.md
+```
+
+Create a file and add text:
+
+```bash
+echo "# My Project" > README.md
+```
+
+Edit a file from terminal:
+
+```bash
+nano README.md
+```
+
+Save in Nano:
+
+```text
+Ctrl + O
+Enter
+Ctrl + X
+```
+
+---
+
+# 3. One-Time Git Setup (Per Computer)
+
+Tell Git who you are:
+
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "you@example.com"
+```
+
+Optional: store credentials locally
+
+```bash
+git config --global credential.helper store
+```
+
+---
+
+# 4. Two Ways To Start A Repository
+
+## Method A: GitHub First (Clone)
+
+Use when:
+
+* Repository already exists on GitHub
+* Working on a new computer
+* Joining an existing project
+
+Download repository:
+
+```bash
 git clone https://github.com/username/repoName.git
-# downloads a repo from github to your current location
+```
 
-# FULL WORKFLOW - brand new repo from scratch
-mkdir -p ~/Documents/syseng-notes/notes1 
-*****-p stands for parents***** 
-# WITHOUT -p, need two commands to create two directories (folders in windows)
-mkdir ~/Documents/syseng-notes
-mkdir ~/Documents/syseng-notes/troubleshootingnotes
-# WITH -p, one command does both at once
-mkdir -p ~/Documents/syseng-notes/troubleshootingnotes
+Enter folder:
 
-# create the folder
+```bash
+cd repoName
+```
 
-cd ~/Documents/syseng-notes/REPONAME
-# navigate into it
+Done.
 
-echo "# REPONAME" >> README.md
-# create a readme file with a title
+---
 
+## Method B: Local First (Init)
+
+Use when:
+
+* Files already exist on your computer
+* Creating a completely new project
+
+Move into project folder:
+
+```bash
+cd ~/Documents/my-project
+```
+
+Initialize Git:
+
+```bash
 git init
-git add README.md
+```
+
+Add files:
+
+```bash
+git add .
+```
+
+Create first commit:
+
+```bash
 git commit -m "first commit"
+```
+
+Rename branch:
+
+```bash
 git branch -M main
+```
+
+Connect GitHub repository:
+
+```bash
 git remote add origin https://github.com/username/repoName.git
+```
+
+Push:
+
+```bash
 git push -u origin main
-# all setup done, repo is live on github
+```
 
-# then create .md files, write notes, save, then same commands
+Done.
+
+---
+
+# 5. Daily Workflow (The Three Commands Forever)
+
+After editing files:
+
+```bash
 git add .
-git commit -m "describe what added"
+git commit -m "describe what changed"
 git push
+```
 
-### example work flows (make directories first or folders in windows world)
+That's it.
 
+---
+
+# 6. Useful Commands
+
+Check status:
+
+```bash
+git status
+```
+
+View commit history:
+
+```bash
+git log --oneline
+```
+
+Download latest changes:
+
+```bash
+git pull
+```
+
+See connected GitHub repository:
+
+```bash
+git remote -v
+```
+
+See files in current commit:
+
+```bash
+git ls-tree -r HEAD
+```
+
+---
+
+# 7. Common Problems
+
+## "fatal: not a git repository"
+
+You forgot:
+
+```bash
+git init
+```
+
+or you're in the wrong folder.
+
+Check:
+
+```bash
+pwd
+ls -lah
+```
+
+Look for:
+
+```text
+.git
+```
+
+---
+
+## "nothing to commit, working tree clean"
+
+Git sees no changes.
+
+Usually:
+
+* File wasn't saved
+* No files were modified
+
+Check:
+
+```bash
+git status
+```
+
+---
+
+## "Everything up-to-date"
+
+Nothing new has been committed.
+
+Did you:
+
+1. Save file?
+2. git add . ?
+3. git commit -m "message" ?
+
+---
+
+## "main -> main (fetch first)"
+
+GitHub already contains commits.
+
+Usually:
+
+```bash
+git pull origin main --allow-unrelated-histories
+```
+
+Or overwrite remote:
+
+```bash
+git push --force
+```
+
+(Only if you're sure.)
+
+---
+
+# 8. Full New Project Example
+
+Create project folder:
+
+```bash
 mkdir -p ~/Documents/ideas/funeral-business
-mkdir -p ~/Documents/ideas/camping-hiking
-mkdir -p ~/Documents/ideas/smart-home
+cd ~/Documents/ideas/funeral-business
+```
 
-then create files (either with touch or nano)
-nano/touch ~/Documents/ideas/funeral-business/README.md
-nano/touch ~/Documents/ideas/camping-hiking/README.md
-nano/touch ~/Documents/ideas/smart-home/README.md
+Create README:
 
-##### note
-touch make empty file. nano make file and you can instantly add contents in it in terminal. :)
+```bash
+echo "# Funeral Business Ideas" > README.md
+```
 
-cd ~/Documents/ideas
+Initialize Git:
+
+```bash
 git init
 git add .
-git commit -m "initial ideas dump — funeral, camping, smart home"
+git commit -m "first commit"
+```
 
-#### then connect to github repo
-git remote add origin https://github.com/username/repoName.git
+Create GitHub repository online.
+
+Connect:
+
+```bash
+git remote add origin https://github.com/username/funeral-business.git
 git branch -M main
 git push -u origin main
-##### Note, create github repo first before connecting obviously xD
+```
+
+Project is now on GitHub.
+
+Future updates:
+
+```bash
+git add .
+git commit -m "added new ideas"
+git push
+```
