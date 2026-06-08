@@ -347,7 +347,7 @@ Create GitHub repository online.
 Connect:
 
 ```bash
-git remote add origin https://github.com/username/funeral-business.git
+git remote add origin https://github.com/username/business.git
 git branch -M main
 git push -u origin main
 ```
@@ -361,3 +361,453 @@ git add .
 git commit -m "added new ideas"
 git push
 ```
+---
+# Markdown files Cheat Sheet
+
+A quick reference for notes, documentation, GitHub repositories, and personal knowledge bases.
+
+---
+
+# Headers
+
+```md
+# Main Title
+
+## Section
+
+### Subsection
+
+#### Smaller Section
+```
+
+Use:
+
+* `#` = document title
+* `##` = major section
+* `###` = subsection
+* `####` = rarely needed
+
+Example:
+
+```md
+# Linux Notes
+
+## Package Management
+
+### apt
+
+#### Common Commands
+```
+
+---
+
+# Paragraphs
+
+Just leave a blank line between paragraphs.
+
+```md
+This is paragraph one.
+
+This is paragraph two.
+```
+
+---
+
+# Horizontal Line
+
+Creates a visual separator.
+
+```md
+---
+```
+
+Result:
+
+---
+
+Use often to break large notes into sections.
+
+---
+
+# Bold
+
+```md
+**Important**
+```
+
+Result:
+
+**Important**
+
+Good for warnings and key ideas.
+
+---
+
+# Italics
+
+```md
+*Optional*
+```
+
+Result:
+
+*Optional*
+
+---
+
+# Bold + Italics
+
+```md
+***Very Important***
+```
+
+Result:
+
+***Very Important***
+
+---
+
+# Inline Code
+
+For commands, filenames, packages, etc.
+
+```md
+Use `git status` to check changes.
+```
+
+Result:
+
+Use `git status` to check changes.
+
+Examples:
+
+```md
+`git`
+`README.md`
+`docker`
+`/etc/ssh/sshd_config`
+```
+
+---
+
+# Code Blocks
+
+For terminal commands or code.
+
+````md
+```bash
+git status
+git add .
+git commit -m "update"
+```
+````
+
+Result:
+
+```bash
+git status
+git add .
+git commit -m "update"
+```
+
+Common language tags:
+
+````md
+```bash
+```
+
+```python
+```
+
+```javascript
+```
+
+```yaml
+```
+
+```json
+```
+````
+
+---
+
+# Bullet Lists
+
+```md
+- Item One
+- Item Two
+- Item Three
+```
+
+Result:
+
+* Item One
+* Item Two
+* Item Three
+
+Nested:
+
+```md
+- Linux
+  - Debian
+  - Fedora
+- Windows
+```
+
+Result:
+
+* Linux
+
+  * Debian
+  * Fedora
+* Windows
+
+---
+
+# Numbered Lists
+
+```md
+1. First
+2. Second
+3. Third
+```
+
+Result:
+
+1. First
+2. Second
+3. Third
+
+---
+
+# Task Lists (Checkboxes)
+
+Very useful for projects and study plans.
+
+```md
+- [ ] Learn Git
+- [ ] Learn Docker
+- [x] Install Debian
+```
+
+Result:
+
+* [ ] Learn Git
+* [ ] Learn Docker
+* [x] Install Debian
+
+---
+
+# Quotes
+
+```md
+> Important note.
+>
+> Another line.
+```
+
+Result:
+
+> Important note.
+>
+> Another line.
+
+Good for:
+
+* Book notes
+* Ideas
+* Warnings
+* Definitions
+
+---
+
+# Links
+
+```md
+[GitHub](https://github.com)
+```
+
+Result:
+
+[GitHub](https://github.com)
+
+---
+
+# Images
+
+```md
+![Alt Text](image.png)
+```
+
+Example:
+
+```md
+![Network Diagram](network-diagram.png)
+```
+
+---
+
+# Tables
+
+```md
+| Tool | Purpose |
+|------|---------|
+| Git | Version Control |
+| Docker | Containers |
+| SSH | Remote Access |
+```
+
+Result:
+
+| Tool   | Purpose         |
+| ------ | --------------- |
+| Git    | Version Control |
+| Docker | Containers      |
+| SSH    | Remote Access   |
+
+---
+
+# Collapsible Sections (GitHub Supports This)
+
+```md
+<details>
+<summary>Click to Expand</summary>
+
+Hidden content here.
+
+</details>
+```
+
+Useful for:
+
+* Long notes
+* Troubleshooting sections
+* Optional information
+
+---
+
+# Keyboard Shortcuts
+
+## VS Code
+
+```text
+Ctrl + S      Save file
+Ctrl + F      Find
+Ctrl + H      Replace
+Ctrl + /      Comment line
+```
+
+## Nano
+
+```text
+Ctrl + O      Save
+Enter         Confirm filename
+Ctrl + X      Exit
+```
+
+---
+
+# Recommended Note Structure
+
+````md
+# Topic Name
+
+Short description.
+
+---
+
+## Commands
+
+```bash
+command here
+````
+
+Explanation.
+
+---
+
+## Notes
+
+* Important thing
+* Another thing
+* Warning
+
+---
+
+## Troubleshooting
+
+### Problem
+
+Description.
+
+### Solution
+
+```bash
+fix command
+```
+
+````
+
+---
+
+# My Personal Rules
+
+1. One topic = one file
+2. Use lots of whitespace
+3. Use `---` between sections
+4. Use code blocks for commands
+5. Use bullets instead of giant paragraphs
+6. Keep sections short
+7. Save files before Git commits (`Ctrl + S`)
+8. Run `git status` before every commit
+
+---
+
+# Minimal Template
+
+```md
+# Topic Name
+
+Short description.
+
+---
+
+## Commands
+
+```bash
+command here
+````
+
+---
+
+## Notes
+
+* Note 1
+* Note 2
+
+---
+
+## Troubleshooting
+
+### Problem
+
+Description.
+
+### Solution
+
+```bash
+fix command
+```
+
+```
+
+This template works for:
+
+- Linux notes
+- Git notes
+- Docker notes
+- Programming notes
+- Business ideas
+- Personal knowledge bases
+```
+---
