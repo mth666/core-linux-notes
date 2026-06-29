@@ -912,7 +912,23 @@ sudo firewall-cmd --reload
 <!--  -->
 
 
+---
+# Top Command
+- The top command output consists of several columns, each representing different aspects of the system's processes:
 
+- PID: Process ID, a unique identifier for each process.
+- USER: The user account that owns the process.
+- PR: Priority of the process.
+- NI: Nice value, which affects scheduling priority.
+- VIRT: Virtual memory size used by the process.
+- RES: Resident memory size, the non-swapped physical memory the process uses.
+- SHR: Shared memory size.
+- S: Process status (e.g., S for sleeping, R for running).
+- %CPU: CPU usage percentage.
+- %MEM: Memory usage percentage.
+- TIME+: Total CPU time the process has used since it started.
+COMMAND: The command that started the process.
+---
 
 
 
