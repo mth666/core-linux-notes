@@ -880,7 +880,7 @@ The /var directory tree is where data that is likely to change is stored. Variou
 /var/log /var/log contains log files, records of various system activity. 
 These are important and should be monitored from time to time. 
 The most useful ones are /var/log/messages and /var/log/syslog. 
-Note that for security reasons on some systems, you must be the superuser to view log files.
+Note that for security reasons on some systems, superuser access is needed to view log files.
 
 ----------------------------
 # Web Server and Firewall stuffs
